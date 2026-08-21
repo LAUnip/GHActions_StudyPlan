@@ -15,6 +15,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Show triggering event
+        run: echo "Triggered by ${{ github.event_name }} event"
+        
       - uses: actions/checkout@v5
 
       - name: Setup Node.js environment
