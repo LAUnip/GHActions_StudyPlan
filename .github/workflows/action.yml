@@ -18,8 +18,22 @@ jobs:
       - name: Show triggering event
         run: echo "Triggered by ${{ github.event_name }} event"
       
-      - name: Show actor
-        run: echo "Triggered by ${{ github.actor }}"
+      - name: Determine trigger user;
+        run: |
+          if [ "${{ github.event_name }}" == "push" ]; then
+            echo "Triggered by push event"
+            echo "User: ${{ github.actor }}"
+          elif [ "${{ github.event_name }}" == "pull_request" ]; then
+            echo "Triggered by pull request event"
+            echo "User: ${{ github.actor }}"
+          elif [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            echo "Triggered by workflow dispatch event"
+            echo "User: ${{ github.actor }}"
+          elif [ "${{ github.event_name }}" == "schedule" ]; then
+            echo "Triggered by schedule event"
+          else
+            echo "Unknown trigger event"
+          fi
 
       - uses: actions/checkout@v5
 
