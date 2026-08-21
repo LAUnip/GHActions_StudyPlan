@@ -17,6 +17,9 @@ jobs:
     steps:
       - name: Show triggering event
         run: echo "Triggered by ${{ github.event_name }} event"
+      
+      - name: Show actor
+        run: echo "Triggered by ${{ github.actor }}"
 
       - uses: actions/checkout@v5
 
